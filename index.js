@@ -11,12 +11,13 @@ const swaggerDocs = require("./docs/swagger.js")
 
 const app = express();
 const PORT = process.env.PORT || 7000;
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     methods: ["GET", "POST"]
   }
 });
@@ -25,7 +26,7 @@ const socketManager = require("./socket/socketManager.js");
 socketManager(io);
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: FRONTEND_URL,
   credentials: true
 }));
 app.use(express.json());

@@ -7,7 +7,7 @@ module.exports = {
   },
   servers: [
     {
-      url: "http://localhost:8000/api",
+      url: "https://pokeproyectofinal.netlify.app/",
       description: "Servidor local",
     },
   ],

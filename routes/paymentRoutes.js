@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const stripe = require("../config/stripe");
 
+const FRONTEND_URL = process.env.FRONTEND_URL
+
 router.post("/create-checkout-session", async (req, res) =>{
     const { cartItems } = req.body;
 
@@ -27,8 +29,8 @@ router.post("/create-checkout-session", async (req, res) =>{
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:5173/success",
-            cancel_url: "http://localhost:5173/cart",
+            success_url: `${FRONTEND_URL}/success`,
+            cancel_url: `${FRONTEND_URL}/cart`,
         });
 
         res.json({url: session.url});
